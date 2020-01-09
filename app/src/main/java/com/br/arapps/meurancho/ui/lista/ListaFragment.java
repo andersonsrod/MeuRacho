@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.sqlite.SQLiteException;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -24,9 +25,11 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.br.arapps.meurancho.R;
+import com.br.arapps.meurancho.classes.ListaItem;
 import com.br.arapps.meurancho.global.AppGlobal;
 import com.br.arapps.meurancho.ui.listaitem.ListaItemFragment;
 import com.br.arapps.meurancho.ui.novalista.NovaListaFragment;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -35,6 +38,7 @@ public class ListaFragment extends Fragment implements ListaViewModel.ListaListe
     private NovaListaFragment novaListaFragment;
     private Toolbar toolbar;
     private ProgressBar progressBar;
+    private FloatingActionButton btnCompartilhar;
 
     private RecyclerView rvLista;
 
@@ -80,6 +84,8 @@ public class ListaFragment extends Fragment implements ListaViewModel.ListaListe
         this.rvLista.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         this.progressBar = getView().findViewById(R.id.progressBar);
+
+        this.btnCompartilhar = getView().findViewById(R.id.btnCompartilhar);
     }
 
     @Override
@@ -175,6 +181,56 @@ public class ListaFragment extends Fragment implements ListaViewModel.ListaListe
                 }
 
                 return false;
+            }
+        });
+
+        this.btnCompartilhar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (final ContentValues c: mViewModel.getData().getValue()){
+                    if (c.getAsBoolean("selecionado")){
+                        new AsyncTask<Void, Void, List<ListaItem>>(){
+                            @Override
+                            protected void onPreExecute() {
+                                super.onPreExecute();
+                                showProgress(true);
+                            }
+
+                            @Override
+                            protected List<ListaItem> doInBackground(Void... voids) {
+                                List<ListaItem> lista;
+                                try{
+                                    return AppGlobal.getDatabase().listaItemDao().allItens(c.getAsString("nomeLista"));
+                                }catch (SQLiteException e){
+                                    return null;
+                                }
+                            }
+
+                            @Override
+                            protected void onPostExecute(List<ListaItem> listaItems) {
+                                super.onPostExecute(listaItems);
+
+                                if (listaItems != null){
+                                    String itens = "";
+                                    for (ListaItem item: listaItems){
+                                        itens += String.format("%s - %.1f %s\n", item.nomeItem, item.qtd, item.unidade);
+                                    }
+
+                                    String shareBody = itens;
+                                    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                                    sharingIntent.setType("text/plain");
+                                    sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, String.format("Lista %s", c.getAsString("nomeLista")));
+                                    sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                                    startActivity(Intent.createChooser(sharingIntent, ""));
+                                }
+
+                                showProgress(false);
+                            }
+                        }.execute();
+
+                        break;
+                    }
+                }
             }
         });
     }

@@ -46,4 +46,20 @@
         app:layout_constraintBottom_toTopOf="parent"
         android:indeterminate="true" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnCompartilhar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            app:srcCompat="@drawable/ic_share_24px"
+            android:scaleType="center"
+            app:borderWidth="0dp" />
+    </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
