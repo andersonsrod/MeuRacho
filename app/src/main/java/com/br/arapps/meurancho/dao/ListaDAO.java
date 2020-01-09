@@ -11,18 +11,23 @@ import java.util.List;
 
 @Dao
 public interface ListaDAO {
+
+    //Insert
     @Insert
     void insert(Lista lista);
 
+    //Delete
     @Delete
     void deleteObject(Lista lista);
-
-    @Query("UPDATE Lista SET nomeLista = :nomeLista WHERE nomeLista = :nomeListaOld")
-    void update(String nomeLista, String nomeListaOld);
 
     @Query("DELETE FROM Lista WHERE nomeLista = :nomeLista")
     void delete(String nomeLista);
 
+    //Update
+    @Query("UPDATE Lista SET nomeLista = :nomeLista WHERE nomeLista = :nomeListaOld")
+    void update(String nomeLista, String nomeListaOld);
+
+    //Select
     @Query("SELECT * FROM Lista")
     List<Lista> allListas();
 

@@ -11,18 +11,21 @@ import java.util.List;
 
 @Dao
 public interface ListaItemDAO {
+    //Insert
     @Insert
     void insert(ListaItem listaItem);
 
     @Query("INSERT INTO ListaItem SELECT :nomeListaNova, nomeItem, qtd, unidade, 'N' FROM ListaItem WHERE nomeLista = :nomeListaCopia")
     void importar(String nomeListaNova, String nomeListaCopia);
 
+    //Delete
     @Query("DELETE FROM ListaItem WHERE nomeLista = :nomeLista AND nomeItem = :nomeItem")
     void delete(String nomeLista, String nomeItem);
 
     @Query("DELETE FROM ListaItem WHERE nomeLista = :nomeLista")
     void deleteAll(String nomeLista);
 
+    //Update
     @Query("UPDATE ListaItem SET nomeItem =:nomeItem, qtd = :qtd, unidade = :unidade WHERE nomeLista = :nomeLista AND nomeItem = :nomeItemOld")
     void update(String nomeItem, double qtd, String unidade, String nomeLista, String nomeItemOld);
 
@@ -32,6 +35,7 @@ public interface ListaItemDAO {
     @Query("UPDATE ListaItem SET nomeLista = :nomeLista WHERE nomeLista = :nomeListaOld")
     void atualizaChave(String nomeLista, String nomeListaOld);
 
+    //Select
     @Query("SELECT * FROM ListaItem WHERE nomeLista = :nomeLista")
     List<ListaItem> allItens(String nomeLista);
 
