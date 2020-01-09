@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Novo" android:id="@+id/menu_novo" android:icon="@drawable/ic_add_24px" app:showAsAction="always" android:orderInCategory="10" />
+    <item android:title="Editar" android:id="@+id/menu_editar" android:icon="@drawable/ic_edit_24px" app:showAsAction="always" android:orderInCategory="20" />
+    <item android:title="Excluir" android:id="@+id/menu_excluir" android:icon="@drawable/ic_delete_24px" app:showAsAction="ifRoom" android:orderInCategory="30" />
+</menu>

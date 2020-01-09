@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Meu Rancho</string>
+    <string name="text_sim">Sim</string>
+    <string name="text_nao">Não</string>
+    <string name="text_ok">OK</string>
+    <string name="text_buscar">Buscar...</string>
+
+    <!--Mensagens-->
+    <string name="text_msg_informe_nome_lista">Informe o nome da lista.</string>
+    <string name="text_msg_salvar_lista">Deseja salvar a lista?</string>
+    <string name="text_msg_nenhum_selecionado">Nenhum registro foi selecionado.</string>
+    <string name="text_msg_excluir_lista">Deseja excluir os registros selecionados?</string>
+    <string name="text_msg_informe_nome_item">Informe o nome do item.</string>
+    <string name="text_msg_informe_qtd_item">Informe a quantidade.</string>
+    <string name="text_msg_salvar_item">Deseja salvar o item?</string>
+</resources>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.novalista.NovaListaFragment"
+    android:background="@color/backgroundList"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome do Item" />
+
+        <EditText
+            android:id="@+id/edtNomeItem"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="3dp"
+            android:inputType="text|textCapCharacters"
+            android:imeOptions="actionDone"
+            android:selectAllOnFocus="true"
+            android:textAllCaps="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quantidade" />
+
+        <EditText
+            android:id="@+id/edtQuantidade"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="3dp"
+            android:inputType="numberDecimal"
+            android:imeOptions="actionDone"
+            android:selectAllOnFocus="true"
+            android:textAllCaps="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Unidade" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinnerUnidade"
+            android:spinnerMode="dialog"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="3dp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@drawable/gray_line" />
+    </LinearLayout>
+</LinearLayout>
