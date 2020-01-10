@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatCheckBox;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.br.arapps.meurancho.R;
@@ -31,7 +32,7 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView tvItem;
         private FrameLayout redLine;
-        private AppCompatCheckBox cbComprado;
+        private SwitchCompat swComprado;
         private TextView tvTotal;
 
         public ViewHolder(@NonNull View itemView) {
@@ -39,7 +40,7 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ViewHolder>{
 
             this.tvItem = itemView.findViewById(R.id.tvItem);
             this.redLine = itemView.findViewById(R.id.redLine);
-            this.cbComprado = itemView.findViewById(R.id.cbComprado);
+            this.swComprado = itemView.findViewById(R.id.swComprado);
             this.tvTotal = itemView.findViewById(R.id.tvTotal);
         }
     }
@@ -85,7 +86,7 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ViewHolder>{
         });
 
         holder.redLine.setVisibility(View.GONE);
-        holder.cbComprado.setVisibility(View.GONE);
+        holder.swComprado.setVisibility(View.GONE);
 
         new AsyncTask<Void, Void, Integer>(){
             @Override

@@ -10,10 +10,12 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatCheckBox;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.br.arapps.meurancho.R;
@@ -33,7 +35,7 @@ public class ListaItemAdapter extends RecyclerView.Adapter<ListaItemAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView tvItem;
         private FrameLayout redLine;
-        private AppCompatCheckBox cbComprado;
+        private SwitchCompat swComprado;
         private ImageView ivNext;
         private TextView tvTotal;
 
@@ -42,7 +44,7 @@ public class ListaItemAdapter extends RecyclerView.Adapter<ListaItemAdapter.View
 
             this.tvItem = itemView.findViewById(R.id.tvItem);
             this.redLine = itemView.findViewById(R.id.redLine);
-            this.cbComprado = itemView.findViewById(R.id.cbComprado);
+            this.swComprado = itemView.findViewById(R.id.swComprado);
             this.ivNext = itemView.findViewById(R.id.ivNext);
             this.tvTotal = itemView.findViewById(R.id.tvTotal);
         }
@@ -90,17 +92,17 @@ public class ListaItemAdapter extends RecyclerView.Adapter<ListaItemAdapter.View
 
         if (c.getAsString("comprado") != null && c.getAsString("comprado").equals("S")) {
             holder.redLine.setVisibility(View.VISIBLE);
-            holder.cbComprado.setChecked(true);
+            holder.swComprado.setChecked(true);
         }else {
             holder.redLine.setVisibility(View.GONE);
-            holder.cbComprado.setChecked(false);
+            holder.swComprado.setChecked(false);
         }
 
-        holder.cbComprado.setOnClickListener(new View.OnClickListener() {
+        holder.swComprado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String comprado;
-                if (holder.cbComprado.isChecked())
+                if (holder.swComprado.isChecked())
                     comprado = "S";
                 else
                     comprado = "N";
